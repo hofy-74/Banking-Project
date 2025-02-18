@@ -81,8 +81,7 @@ if page == "Overview":
     # Optionally add a footer for extra details or credits
     st.markdown("""
     ---
-    Data Source: [Insert Source Name]
-    Report generated on: [Insert Date]
+    Report generated on: [19/2/2025]
     """)
 
 
