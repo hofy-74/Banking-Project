@@ -1,0 +1,34 @@
+
+import nbformat
+import pkg_resources
+
+# Load the notebook
+notebook_path = "C:\\Users\\YOUR PC\\Documents\\portfolio\\Banking_Project\\credit_score_notebook.ipynb"
+with open(notebook_path, "r", encoding="utf-8") as f:
+    notebook = nbformat.read(f, as_version=4)
+
+# Extract code cells
+code_cells = [cell["source"] for cell in notebook["cells"] if cell["cell_type"] == "code"]
+
+# Extract import statements
+import_statements = set()
+for code in code_cells:
+    for line in code.split("\n"):
+        line = line.strip()
+        if line.startswith("import ") or line.startswith("from "):
+            import_statements.add(line)
+
+# Extract library names
+libraries = set()
+for statement in import_statements:
+    parts = statement.split()
+    if parts[0] == "import":
+        libraries.add(parts[1].split(".")[0])
+    elif parts[0] == "from":
+        libraries.add(parts[1].split(".")[0])
+
+# Get versions
+installed_packages = {pkg.key: pkg.version for pkg in pkg_resources.working_set}
+lib_versions = {lib: installed_packages.get(lib, "Not Installed") for lib in libraries}
+
+lib_versions
