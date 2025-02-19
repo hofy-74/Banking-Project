@@ -12,7 +12,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
-# Load dataset (Replace 'banking_data.csv' with your actual dataset)
 @st.cache_data
 def load_data():
     df = pd.read_csv("process_2.csv")  # Ensure this file exists
